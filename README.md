@@ -2,6 +2,8 @@
 
 A best-effort workaround for the missing `/who` on Project Epoch. Whorkaround builds a persistent database of players you encounter and lets you look them up by name — including offline players (shows cached "last seen" data) and enemy faction members (through "proxy" users that reply to your requests).
 
+This repository is a custom fork/build focused on local customization and dashboard extensions. The original addon is maintained at https://github.com/ZythDr/Whorkaround.
+
 
 ---
 
