@@ -273,7 +273,7 @@ function Whorkaround:InitGUI()
 
     local dashboardSubtitle = dashboard:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
     dashboardSubtitle:SetPoint("TOPLEFT", dashboardTitle, "BOTTOMLEFT", 0, -8)
-    dashboardSubtitle:SetText("Based on each player's latest known sighting.")
+    dashboardSubtitle:SetText("Top stats are cumulative. Freshness buckets below are exclusive.")
     dashboardSubtitle:SetTextColor(0.7, 0.7, 0.7)
 
     local function CreateDashboardStat(parent, label, point, relativeTo, relativePoint, xOffset, yOffset)
@@ -295,10 +295,10 @@ function Whorkaround:InitGUI()
         return frame
     end
 
-    dashboardSummaryStats.today = CreateDashboardStat(dashboard, "Today", "TOPLEFT", dashboardSubtitle, "BOTTOMLEFT", 0, -12)
-    dashboardSummaryStats.days3 = CreateDashboardStat(dashboard, "3 Days", "LEFT", dashboardSummaryStats.today, "RIGHT", 18, 0)
-    dashboardSummaryStats.days7 = CreateDashboardStat(dashboard, "7 Days", "LEFT", dashboardSummaryStats.days3, "RIGHT", 18, 0)
-    dashboardSummaryStats.days14 = CreateDashboardStat(dashboard, "14 Days", "LEFT", dashboardSummaryStats.days7, "RIGHT", 18, 0)
+    dashboardSummaryStats.today = CreateDashboardStat(dashboard, "Seen <=1 Day", "TOPLEFT", dashboardSubtitle, "BOTTOMLEFT", 0, -12)
+    dashboardSummaryStats.days3 = CreateDashboardStat(dashboard, "Seen <=3 Days", "LEFT", dashboardSummaryStats.today, "RIGHT", 18, 0)
+    dashboardSummaryStats.days7 = CreateDashboardStat(dashboard, "Seen <=7 Days", "LEFT", dashboardSummaryStats.days3, "RIGHT", 18, 0)
+    dashboardSummaryStats.days14 = CreateDashboardStat(dashboard, "Seen <=14 Days", "LEFT", dashboardSummaryStats.days7, "RIGHT", 18, 0)
 
     local dashboardHealth = dashboard:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     dashboardHealth:SetPoint("TOPRIGHT", -36, -16)
@@ -308,7 +308,7 @@ function Whorkaround:InitGUI()
     local dashboardHealthNote = dashboard:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
     dashboardHealthNote:SetPoint("TOPRIGHT", dashboardHealth, "BOTTOMRIGHT", 0, -3)
     dashboardHealthNote:SetJustifyH("RIGHT")
-    dashboardHealthNote:SetText("Freshness of the latest sightings")
+    dashboardHealthNote:SetText("Based on how fresh the latest sightings are")
     dashboardHealthNote:SetTextColor(0.6, 0.6, 0.6)
 
     local function CreateStackedBar(parent, width)
@@ -394,7 +394,7 @@ function Whorkaround:InitGUI()
 
     local freshnessHint = dashboard:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
     freshnessHint:SetPoint("TOPLEFT", freshnessHeader, "BOTTOMLEFT", 0, -4)
-    freshnessHint:SetText("Unique players grouped by how recent the latest sighting is.")
+    freshnessHint:SetText("Exclusive buckets. Each player appears here only once.")
     freshnessHint:SetTextColor(0.6, 0.6, 0.6)
 
     dashboardFreshnessRows.today = CreateDashboardRow(dashboard, "Today", "TOPLEFT", freshnessHint, "BOTTOMLEFT", 0, -12, 170)
@@ -409,7 +409,7 @@ function Whorkaround:InitGUI()
 
     local classHint = dashboard:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
     classHint:SetPoint("TOPLEFT", classHeader, "BOTTOMLEFT", 0, -4)
-    classHint:SetText("Split by faction for players seen within the last 7 days.")
+    classHint:SetText("Cumulative 7-day window, split by faction.")
     classHint:SetTextColor(0.6, 0.6, 0.6)
 
     do
